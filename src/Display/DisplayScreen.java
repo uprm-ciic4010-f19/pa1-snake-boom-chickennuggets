@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Resources.Color;
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -21,7 +23,6 @@ public class DisplayScreen {
         this.title = title;
         this.width = width;
         this.height = height;
-
 
 
         createDisplay();
