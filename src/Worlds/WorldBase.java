@@ -37,7 +37,7 @@ public abstract class WorldBase {
 
 	public LinkedList<Tail> body = new LinkedList<>();
 
-	Color invisible = new Color (255,255,255,0);
+
 
 
 	public WorldBase(Handler handler){
@@ -54,6 +54,7 @@ public abstract class WorldBase {
 	}
 
 	public void render(Graphics g){
+		Color invisible = new Color (255,255,255,0);
 
 		for (int i = 0; i <= 800; i = i + GridPixelsize) {
 

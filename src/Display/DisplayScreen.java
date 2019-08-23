@@ -17,7 +17,10 @@ public class DisplayScreen {
 	private Canvas canvas;
 	private String title;
 	private int width, height;
+	
+	
 	Color purple = new Color(128,0,128);
+	
 	public DisplayScreen(String title, int width, int height){
 		this.title = title;
 		this.width = width;
