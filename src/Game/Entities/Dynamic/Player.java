@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.GameStates.GameOverState;
+import Game.GameStates.State;
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -17,6 +20,7 @@ public class Player {
 	public Tail tail= null;
 	public int xCoord;
 	public int yCoord;
+	public boolean GameOverMusic;
 
 	public int moveCounter;
 
@@ -112,7 +116,9 @@ public class Player {
 
 		for(int i=0; i < handler.getWorld().body.size(); i++) {
 			if(this.xCoord == handler.getWorld().body.get(i).x && this.yCoord == handler.getWorld().body.get(i).y) {
-				System.out.println("KILL IT"); // imprime kill it cada vez que colisiona el player con la cola. by Josean Rodriguez
+				State.setState (handler.getGame().GameOverState); // GameOverState
+				
+				
 			}
 		}
 
