@@ -63,7 +63,9 @@ public class Player {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)) {
 
 		}
-
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+			State.setState(handler.getGame().pauseState);
+		}
 	}
 
 	public void checkCollisionAndMove(){
@@ -72,29 +74,29 @@ public class Player {
 		int y = yCoord;
 		switch (direction){
 		case "Left":
-			if(xCoord==0){
-				kill();
+			if(xCoord== 0) {
+				xCoord = handler.getWorld().GridWidthHeightPixelCount - 1;
 			}else{
 				xCoord--;
 			}
 			break;
 		case "Right":
 			if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				kill();
+				xCoord = handler.getWorld().GridWidthHeightPixelCount - 60;
 			}else{
 				xCoord++;
 			}
 			break;
 		case "Up":
 			if(yCoord==0){
-				kill();
+				yCoord = handler.getWorld().GridWidthHeightPixelCount -1;
 			}else{
 				yCoord--;
 			}
 			break;
 		case "Down":
 			if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				kill();
+				yCoord = handler.getWorld().GridWidthHeightPixelCount - 60;
 			}else{
 				yCoord++;
 			}
@@ -286,4 +288,6 @@ public class Player {
 	public void setJustAte(boolean justAte) {
 		this.justAte = justAte;
 	}
+	
+	
 }
