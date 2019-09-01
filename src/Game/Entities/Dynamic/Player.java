@@ -20,6 +20,7 @@ public class Player {
 	public Tail tail= null;
 	public int xCoord;
 	public int yCoord;
+	public double Score = 0;
 	public boolean GameOverMusic;
 
 	public int moveCounter;
@@ -57,8 +58,10 @@ public class Player {
 			direction="Down";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
 			direction="Left";
+			
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
 			direction="Right";
+			
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)) {
 
@@ -75,34 +78,35 @@ public class Player {
 		switch (direction){
 		case "Left":
 			if(xCoord== 0) {
-				xCoord = handler.getWorld().GridWidthHeightPixelCount - 1;
+				xCoord = handler.getWorld().GridWidthHeightPixelCount - 1; // Check Collision with left walls
 			}else{
 				xCoord--;
 			}
 			break;
 		case "Right":
 			if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				xCoord = handler.getWorld().GridWidthHeightPixelCount - 60;
+				xCoord = handler.getWorld().GridWidthHeightPixelCount - 60; // Check Collision with right walls
 			}else{
 				xCoord++;
 			}
 			break;
 		case "Up":
 			if(yCoord==0){
-				yCoord = handler.getWorld().GridWidthHeightPixelCount -1;
+				yCoord = handler.getWorld().GridWidthHeightPixelCount -1; // Check Collision with upper wall
 			}else{
 				yCoord--;
 			}
 			break;
 		case "Down":
 			if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				yCoord = handler.getWorld().GridWidthHeightPixelCount - 60;
+				yCoord = handler.getWorld().GridWidthHeightPixelCount - 60; // Check Collision with lower wall
 			}else{
 				yCoord++;
 			}
 			break;
 		}
 		handler.getWorld().playerLocation[xCoord][yCoord]=true;
+		
 
 
 		if(handler.getWorld().appleLocation[xCoord][yCoord]){
@@ -119,11 +123,10 @@ public class Player {
 		for(int i=0; i < handler.getWorld().body.size(); i++) {
 			if(this.xCoord == handler.getWorld().body.get(i).x && this.yCoord == handler.getWorld().body.get(i).y) {
 				State.setState (handler.getGame().GameOverState); // GameOverState
-				
-				
+			
 			}
 		}
-
+		
 	}
 
 
@@ -157,7 +160,6 @@ public class Player {
 
 			}
 		}
-
 
 	}
 
@@ -267,7 +269,7 @@ public class Player {
 		}
 		handler.getWorld().body.addLast(tail);
 		handler.getWorld().playerLocation[tail.x][tail.y] = true;
-
+		Score();
 	}
 
 	public void kill(){
@@ -289,5 +291,45 @@ public class Player {
 		this.justAte = justAte;
 	}
 	
+	/*public void backTracking() {  INTENTO DE BACKTRACKING BY JOSEAN RODRIGUEZ
+		
+		switch (direction){
+		case "Right":
+			if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+				direction = "Right";
+			}
+		case "Left":
+			
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) {
+			direction = "Left";
+		}
+		
+		case "Up":
+			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+				direction = "Up";
+			}
+			
+		case"Down":
+			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) {
+				direction = "Down";
+			}
+		}
+	}*/
+		 
 	
+		
+		public void Score() {
+	    	if(handler.getWorld().playerLocation[tail.x][tail.y] == true);
+	    	Score = Math.sqrt(2*Score + 1);
+	    	System.out.println(Score);
+	 }
+		public void renderScore(Graphics g) {
+			String ScoreString = String.valueOf(Score);
+			int fontSize = 20;
+			g.setColor(Color.CYAN);
+			g.setFont(new Font("BroadWay", Font.PLAIN, fontSize));
+			g.drawString("Score:"+ScoreString, handler.getWorld().GridWidthHeightPixelCount / 2,15);
+		}
 }
+	
+

@@ -10,6 +10,7 @@ import java.util.Random;
  * Created by AlexVR on 7/2/2018.
  */
 public class WorldOne extends WorldBase{
+	public int Score = 0;
 
     public WorldOne (Handler handler) {
         super(handler);
@@ -49,6 +50,10 @@ public class WorldOne extends WorldBase{
     public void render(Graphics g){
         super.render(g);
         player.render(g,playerLocation);
+        player.renderScore(g);
     }
 
-}
+    
+    }
+
+

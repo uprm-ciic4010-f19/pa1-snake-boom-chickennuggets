@@ -30,25 +30,20 @@ public class GameOverState extends State {
 	private AudioFormat format;
 	private DataLine.Info info;
 	private Clip audioClip;
+	
 
 	public GameOverState(Handler handler) {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
+		
 
-
-		/* uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2-32, 128, 64, Images.endGame, new ClickListlener() {
-            @Override
-            public void onClick() {
-                handler.getGame().reStart();
-                State.setState(handler.getGame().gameState);
-            }
-        }));*/
 	}
 	
-	public void Initmusic() {
-		/*try {
-
+	/*public void Initmusic() {
+		
+		try {
+			
 			audioFile = getClass().getResourceAsStream("/music/SnakeGameOver.wav");
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
 			format = audioStream.getFormat();
@@ -63,8 +58,8 @@ public class GameOverState extends State {
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
-		}*/
-	}
+		}
+	}*/
 
 	@Override
 	public void tick() {
@@ -79,10 +74,9 @@ public class GameOverState extends State {
 		g.drawImage(Images.endGame, 0, 0, handler.getGame().getWidth(),handler.getGame().getHeight(), null);
 		g.setColor(Color.BLACK);
 		//g.fillRect(0,0,handler.getWidth(),handler.getHeight());
-
 		uiManager.Render(g);
 
 	}
-
+	
 }
 

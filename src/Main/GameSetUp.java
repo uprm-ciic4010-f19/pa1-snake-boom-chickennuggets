@@ -10,6 +10,7 @@ import Game.GameStates.State;
 import Input.KeyManager;
 import Input.MouseManager;
 import Resources.Images;
+import Game.Entities.Dynamic.*;
 
 import javax.sound.sampled.*;
 import java.awt.*;
