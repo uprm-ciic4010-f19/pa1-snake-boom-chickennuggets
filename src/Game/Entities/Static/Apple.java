@@ -1,5 +1,6 @@
 package Game.Entities.Static;
 
+import Game.Entities.Dynamic.Player;
 import Main.Handler;
 
 /**
@@ -17,6 +18,9 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
-
+    public static boolean isGood(int step) {
+    	step = Player.step;
+    return (!(step % 61 == 0));
 
 }
+    }

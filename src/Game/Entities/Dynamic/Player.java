@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.Entities.Static.Apple;
 import Game.GameStates.GameOverState;
 import Game.GameStates.State;
 
@@ -24,8 +25,8 @@ public class Player {
 	public boolean GameOverMusic;
 	public int speed = 6;
 	public int moveCounter;
-
-
+	public static int step = 1;
+	
 
 	public String direction;//is your first name one?
 
@@ -48,24 +49,31 @@ public class Player {
 		if(moveCounter>=speed) {
 			checkCollisionAndMove();
 			moveCounter=0;
+			step++;
+			if (step==60)
+				step = 0;
+			
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
 			handler.getWorld().body.addFirst(new Tail(this.xCoord, this.yCoord,handler));
+			lenght++;
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
 			direction="Up";
+			//backTracking();
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
 			direction="Down";
+			//backTracking();
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
 			direction="Left";
+			//backTracking();
 			
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
 			direction="Right";
+			//backTracking();
 			
 		}
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)) {
-
-		}
+		
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
 			State.setState(handler.getGame().pauseState);
 		}
@@ -74,6 +82,9 @@ public class Player {
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
 			speed++;
+		}
+		if(Apple.isGood(step) == false) {
+			System.out.print(false);
 		}
 	}
 
@@ -297,9 +308,9 @@ public class Player {
 		this.justAte = justAte;
 	}
 	
-	/*public void backTracking() {  INTENTO DE BACKTRACKING BY JOSEAN RODRIGUEZ
-		
-		switch (direction){
+	public void backTracking() {  
+		if (lenght >= 2)
+		{		switch (direction){
 		case "Right":
 			if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
 				direction = "Right";
@@ -320,13 +331,18 @@ public class Player {
 				direction = "Down";
 			}
 		}
-	}*/
+	}
+	}
 		 
 	
 		
 		public void Score() {
-	    	if(handler.getWorld().playerLocation[tail.x][tail.y] == true);
-	    	Score = Math.sqrt(2*Score + 1);
+			/*if (handler.getWorld().playerLocation[tail.x][tail.y] == true && Apple.isGood(step) == false) {
+				Score = Score - Math.sqrt(2*Score + 1);
+		    	System.out.println(Score);
+			}*/
+			if(handler.getWorld().playerLocation[tail.x][tail.y] == true);
+	    	Score = Score + Math.sqrt(2*Score + 1);
 	    	System.out.println(Score);
 	 }
 		public void renderScore(Graphics g) {
