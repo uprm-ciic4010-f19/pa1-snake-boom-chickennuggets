@@ -22,7 +22,7 @@ public class Player {
 	public int yCoord;
 	public double Score = 0;
 	public boolean GameOverMusic;
-
+	public int speed = 6;
 	public int moveCounter;
 
 
@@ -45,7 +45,7 @@ public class Player {
 
 	public void tick(){
 		moveCounter++;
-		if(moveCounter>=5) {
+		if(moveCounter>=speed) {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
@@ -68,6 +68,12 @@ public class Player {
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
 			State.setState(handler.getGame().pauseState);
+		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+			speed--;
+		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+			speed++;
 		}
 	}
 
