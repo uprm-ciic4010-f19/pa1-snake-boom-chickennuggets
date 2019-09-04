@@ -25,7 +25,7 @@ public class Player {
 	public boolean GameOverMusic;
 	public int speed = 6;
 	public int moveCounter;
-	public static int step = 1;
+	public static int step = 0;
 	
 
 	public String direction;//is your first name one?
@@ -50,8 +50,7 @@ public class Player {
 			checkCollisionAndMove();
 			moveCounter=0;
 			step++;
-			if (step==60)
-				step = 0;
+			
 			
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
@@ -59,18 +58,22 @@ public class Player {
 			lenght++;
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
+			if (direction == "Down") backTracking();
+			else 
 			direction="Up";
-			//backTracking();
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+			if (direction == "Up") backTracking();
+			else 
 			direction="Down";
-			//backTracking();
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+			if (direction == "Right") backTracking();
+			else 
 			direction="Left";
-			//backTracking();
-			
+
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
+			if (direction == "Left") backTracking();
+			else 
 			direction="Right";
-			//backTracking();
 			
 		}
 		
@@ -84,7 +87,7 @@ public class Player {
 			speed++;
 		}
 		if(Apple.isGood(step) == false) {
-			System.out.print(false);
+			//System.out.print(false);
 		}
 	}
 
@@ -314,21 +317,25 @@ public class Player {
 		case "Right":
 			if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
 				direction = "Right";
+				break;
 			}
 		case "Left":
 			
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) {
 			direction = "Left";
+			break;
 		}
 		
 		case "Up":
 			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
 				direction = "Up";
+				break;
 			}
 			
 		case"Down":
 			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) {
 				direction = "Down";
+				break;
 			}
 		}
 	}
@@ -342,9 +349,27 @@ public class Player {
 		    	System.out.println(Score);
 			}*/
 			if(handler.getWorld().playerLocation[tail.x][tail.y] == true);
-	    	Score = Score + Math.sqrt(2*Score + 1);
-	    	System.out.println(Score);
-	 }
+			if (Apple.isGood(step) == false) {
+				if (Score == 0) Score = 0;
+				
+				else if (Score >= (Score - Math.sqrt(2*Score + 1))){
+				Score = Score - Math.sqrt(2*Score + 1);
+				if (Score < 0) Score = 0;
+		    	System.out.println(Score);
+				}
+				
+			}
+			
+			else if (Apple.isGood(step) == true) {
+					Score = Score + Math.sqrt(2*Score + 1);
+					System.out.println(Score);
+					
+			}
+			//System.out.print(Apple.isGood(step));
+			//System.out.print(step);
+			step = 0;
+		
+		}
 		public void renderScore(Graphics g) {
 			String ScoreString = String.valueOf(Score);
 			int fontSize = 20;
