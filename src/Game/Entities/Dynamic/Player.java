@@ -23,7 +23,7 @@ public class Player {
 	public int yCoord;
 	public double Score = 0;
 	public boolean GameOverMusic;
-	public int speed = 6;
+	public int speed = 10;
 	public int moveCounter;
 	public static int step = 0;
 	
@@ -58,20 +58,20 @@ public class Player {
 			lenght++;
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
-			if (direction == "Down") backTracking();
+			if (direction == "Down" && lenght>=2) backTracking();
 			else 
 			direction="Up";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
-			if (direction == "Up") backTracking();
+			if (direction == "Up"&& lenght>=2) backTracking();
 			else 
 			direction="Down";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
-			if (direction == "Right") backTracking();
+			if (direction == "Right"&& lenght>=2) backTracking();
 			else 
 			direction="Left";
 
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
-			if (direction == "Left") backTracking();
+			if (direction == "Left"&& lenght>=2) backTracking();
 			else 
 			direction="Right";
 			
@@ -154,8 +154,8 @@ public class Player {
 
 
 	public void render(Graphics g,Boolean[][] playeLocation){
-		Random r = new Random();
-		int x = r.nextInt(50);
+		//Random r = new Random();
+		//int x = r.nextInt(50);
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 				g.setColor(Color.green);
@@ -184,8 +184,9 @@ public class Player {
 	}
 
 	public void Eat(){
+		
+		speed = speed - 6;
 		lenght++;
-
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;
 		handler.getWorld().appleOnBoard=false;
 		switch (direction){
@@ -291,6 +292,7 @@ public class Player {
 		handler.getWorld().playerLocation[tail.x][tail.y] = true;
 		Score();
 	}
+		
 
 	public void kill(){
 		lenght = 0;
@@ -312,8 +314,7 @@ public class Player {
 	}
 	
 	public void backTracking() {  
-		if (lenght >= 2)
-		{		switch (direction){
+					switch (direction){
 		case "Right":
 			if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
 				direction = "Right";
@@ -339,7 +340,7 @@ public class Player {
 			}
 		}
 	}
-	}
+	
 		 
 	
 		
@@ -350,6 +351,9 @@ public class Player {
 			}*/
 			if(handler.getWorld().playerLocation[tail.x][tail.y] == true);
 			if (Apple.isGood(step) == false) {
+				if (lenght == 1) ;
+				lenght--;
+				
 				if (Score == 0) Score = 0;
 				
 				else if (Score >= (Score - Math.sqrt(2*Score + 1))){
