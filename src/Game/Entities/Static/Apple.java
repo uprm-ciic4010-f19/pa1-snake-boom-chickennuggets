@@ -20,7 +20,7 @@ public class Apple {
     }
     public static boolean isGood(int step) {
     	step = Player.step;
-    	if (step >= 60) {
+    	if (step >= 120) {
     return false;
     	}
     	else return true;

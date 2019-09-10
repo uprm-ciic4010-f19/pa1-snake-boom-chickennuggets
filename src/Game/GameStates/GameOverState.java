@@ -19,6 +19,8 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import Game.Entities.Dynamic.Player;
+
 
 public class GameOverState extends State {
 
@@ -37,8 +39,28 @@ public class GameOverState extends State {
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
 		
+		
+		uiManager = new UIManager(handler);
+        handler.getMouseManager().setUimanager(uiManager);
 
+
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+104, 128, 64, Images.butstart, new ClickListlener() {
+            @Override
+            public void onClick() {
+                handler.getMouseManager().setUimanager(null);
+                handler.getGame().reStart();
+                State.setState(handler.getGame().gameState);
+            }
+        }));
+        
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+164, 128, 64, Images.BTitle, () -> {
+            handler.getMouseManager().setUimanager(null);
+            State.setState(handler.getGame().menuState);
+        }));
 	}
+
+	
+	
 	
 	/*public void Initmusic() {
 		
@@ -71,7 +93,13 @@ public class GameOverState extends State {
 
 	@Override
 	public void render(Graphics g) {
+		double GameScore = Player.Score;
+		String ScoreString = String.valueOf(GameScore);
+		int fontSize = 30;
+		g.setColor(Color.RED);
+		g.setFont(new Font("BroadWay", Font.PLAIN, fontSize));
 		g.drawImage(Images.endGame, 0, 0, handler.getGame().getWidth(),handler.getGame().getHeight(), null);
+		g.drawString("Final Score:"+ScoreString, (handler.getWidth()/2)-100,handler.getHeight() -320);
 		g.setColor(Color.BLACK);
 		//g.fillRect(0,0,handler.getWidth(),handler.getHeight());
 		uiManager.Render(g);

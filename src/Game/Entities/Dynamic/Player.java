@@ -21,7 +21,7 @@ public class Player {
 	public Tail tail= null;
 	public int xCoord;
 	public int yCoord;
-	public double Score = 0;
+	public static double Score = 0;
 	public boolean GameOverMusic;
 	public int speed = 10;
 	public int moveCounter;
