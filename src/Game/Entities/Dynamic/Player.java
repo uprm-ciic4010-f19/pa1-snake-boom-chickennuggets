@@ -23,13 +23,12 @@ public class Player {
 	public int yCoord;
 	public static double Score = 0;
 	public boolean GameOverMusic;
-	public int speed = 10;
+	public double speed = 10.0;
 	public int moveCounter;
 	public static int step = 0;
 	
 
 	public String direction;//is your first name one?
-
 
 
 	public Player(Handler handler){
@@ -202,7 +201,7 @@ public class Player {
 
 	public void Eat(){
 		if (Apple.isGood(step)) {
-		speed = speed - 6;
+		speed = speed - 0.6;
 		lenght++;}
 		else if (Apple.isGood(step)){
 			lenght--;
@@ -388,8 +387,11 @@ public class Player {
 			}*/
 			if(handler.getWorld().playerLocation[tail.x][tail.y] == true) {
 			if (Apple.isGood(step) == false) {
-				/*if (lenght > 1) ;
-				lenght--;*/
+				if (lenght > 1) {
+				lenght--;
+				}
+				else if (lenght == 1)
+				{State.setState (handler.getGame().GameOverState);}
 				
 				if (Score == 0) Score = 0;
 				
