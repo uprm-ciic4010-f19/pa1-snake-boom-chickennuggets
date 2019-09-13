@@ -143,7 +143,8 @@ public class Player {
 		for(int i=0; i < handler.getWorld().body.size(); i++) {
 			if(this.xCoord == handler.getWorld().body.get(i).x && this.yCoord == handler.getWorld().body.get(i).y) {
 				State.setState (handler.getGame().GameOverState); // GameOverState
-			
+				step = 0;
+				
 			}
 		}
 		

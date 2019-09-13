@@ -17,6 +17,7 @@ public class GameState extends State {
 
     public GameState(Handler handler){
         super(handler);
+        Player.Score=0;
         world = new WorldOne(handler);
         handler.setWorld(world);
         handler.getWorld().player= new Player(handler);
