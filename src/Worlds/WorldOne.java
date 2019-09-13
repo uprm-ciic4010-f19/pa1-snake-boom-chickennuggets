@@ -1,5 +1,6 @@
 package Worlds;
 
+import Game.Entities.Dynamic.Player;
 import Game.Entities.Static.Apple;
 import Main.Handler;
 
@@ -43,6 +44,10 @@ public class WorldOne extends WorldBase{
             apple = new Apple(handler,appleX,appley);
             appleLocation[appleX][appley]=true;
 
+        }
+        else if (!Apple.isGood(Player.step)) {
+        	
+        	
         }
     }
 

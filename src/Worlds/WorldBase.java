@@ -44,6 +44,7 @@ public abstract class WorldBase {
 		this.handler = handler;
 
 		appleOnBoard = false;
+		
 
 
 	}
