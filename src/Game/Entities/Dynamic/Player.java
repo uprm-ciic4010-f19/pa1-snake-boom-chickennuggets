@@ -162,15 +162,6 @@ public class Player {
 				g.setColor(Color.green);
 
 
-				/*if (x>0 && x <=25) Cambia de color simultaneamente. 
-					g.setColor(Color.red);
-				else if (x > 25 && x <=50)
-					g.setColor(Color.blue);
-				else if (x > 50 && x <=75)
-					g.setColor(Color.GREEN);
-				else if (x>75 && x <= 100)
-					g.setColor(Color.YELLOW);*/
-
 
 				if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]&& Apple.isGood(step)){
 					g.setColor(Color.green);
@@ -178,13 +169,7 @@ public class Player {
 							(j*handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize,
 							handler.getWorld().GridPixelsize);}
-				/*if(handler.getWorld().appleLocation[i][j]&& Apple.isGood(step)) {
-					g.fillRect((i*handler.getWorld().GridPixelsize),
-							(j*handler.getWorld().GridPixelsize),
-							handler.getWorld().GridPixelsize,
-							handler.getWorld().GridPixelsize);}*/
 				
-					//Trying apple color (works?)
 				if (handler.getWorld().appleLocation[i][j] && !Apple.isGood(step)) {
 						g.setColor(Color.orange);
 						g.fillRect((i*handler.getWorld().GridPixelsize),
@@ -322,9 +307,9 @@ public class Player {
 			}
 			else {
 			handler.getWorld().body.removeLast();
+			Score();
 			kill();
 			handler.getWorld().playerLocation[tail.x][tail.y] = false;
-			Score();
 			lenght--;
 			}
 			}
@@ -399,8 +384,6 @@ public class Player {
 				
 				else if (Score >= (Score - Math.sqrt(2*Score + 1))){
 				Score = Score - Math.sqrt(2*Score + 1);
-				if (Score < 0) Score = 0;
-		    	System.out.println(Score);
 				}
 				
 			}
@@ -410,8 +393,6 @@ public class Player {
 					System.out.println(Score);
 					
 			}
-			//System.out.print(Apple.isGood(step));
-			//System.out.print(step);
 			}
 			step = 0;
 		}
