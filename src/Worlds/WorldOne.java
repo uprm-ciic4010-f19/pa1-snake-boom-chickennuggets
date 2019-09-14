@@ -45,10 +45,6 @@ public class WorldOne extends WorldBase{
             appleLocation[appleX][appley]=true;
 
         }
-        else if (!Apple.isGood(Player.step)) {
-        	
-        	
-        }
     }
 
     @Override

@@ -59,30 +59,6 @@ public class GameOverState extends State {
         }));
 	}
 
-	
-	
-	
-	/*public void Initmusic() {
-		
-		try {
-			
-			audioFile = getClass().getResourceAsStream("/music/SnakeGameOver.wav");
-			audioStream = AudioSystem.getAudioInputStream(audioFile);
-			format = audioStream.getFormat();
-			info = new DataLine.Info(Clip.class, format);
-			audioClip = (Clip) AudioSystem.getLine(info);
-			audioClip.open(audioStream);
-			audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
-	}*/
-
 	@Override
 	public void tick() {
 		handler.getMouseManager().setUimanager(uiManager);
@@ -101,7 +77,6 @@ public class GameOverState extends State {
 		g.drawImage(Images.endGame, 0, 0, handler.getGame().getWidth(),handler.getGame().getHeight(), null);
 		g.drawString("Final Score:"+ScoreString, (handler.getWidth()/2)-100,handler.getHeight() -320);
 		g.setColor(Color.BLACK);
-		//g.fillRect(0,0,handler.getWidth(),handler.getHeight());
 		uiManager.Render(g);
 
 	}
